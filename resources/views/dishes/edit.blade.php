@@ -23,7 +23,7 @@
 </div>
 @endif
 
-<form action="{{ route('dishes.update',$dish->id) }}" method="POST">
+<form action="{{ route('dishes.update',$dish->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
@@ -49,7 +49,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Image:</strong>
-                <input type="file" name="image_destinasion" class="form-control" placeholder="">
+                <input type="file" name="image" class="form-control" placeholder="">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -15,11 +15,11 @@ class DishController extends Controller
      */
     public function index()
     {
-        $dishes = Dish::latest()->paginate(3);
-
+        // $dishes = Dish::latest()->paginate(6);
+        // $dishes = Dish::where('column_name', 'value')->get();//this request get from the database the record were column_name=value
+        $dishes = Dish::all();
         return view('dishes.index', compact('dishes'));
         // ->with('i', (request()->input('page', 1) - 1) * 5);
-        // return " <pre> " . var_dump(compact('dishes')) . " <pre>";
     }
 
     /**
@@ -38,16 +38,24 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Dish $dish)
     {
         $request->validate([
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'image_destinasion' => 'required',
+            'image' => 'required',
         ]);
 
-        Dish::create($request->all());
+        // Dish::create($request->all()); //create is look like the save function
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+
+        $dish->image = $imageName;
+        $dish->name = $request->name;
+        $dish->description = $request->description;
+        $dish->price = $request->price;
+        $dish->save();
 
         return redirect()->route('dishes.index')
             ->with('success', 'The dish created successfully.');
@@ -88,10 +96,17 @@ class DishController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'image_destinasion' => 'required',
+            'image' => 'required',
         ]);
-
-        $dish->update($request->all());
+        // $dish->update($request->all());
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+        Dish::where('id', $dish->id)->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'image' => $imageName,
+        ]);
 
         return redirect()->route('dishes.index')
             ->with('success', 'The dish updated successfully');

@@ -22,6 +22,7 @@
         <tr>
             <th>#</th>
             <th>Name</th>
+            <th>Image</th>
             <th>Descpription</th>
             <th>Price</th>
             <th width="280px">Action</th>
@@ -31,6 +32,12 @@
         @foreach ($dishes as $dish)
         <tr>     
             <td>{{ ++$i }}</td>
+            <td style="background-image:url({{ asset('images/' . $dish->image) }});
+            height: 63px;
+            background-position: center;
+            background-size:cover;
+            background-repeat:no-repeat;
+            "></td>
             <td>{{ $dish->name }}</td>
             <td>{{ $dish->description }}</td>
             <td>{{ $dish->price}}</td>
@@ -51,6 +58,6 @@
         @endforeach
     </table>
   
-    {!! $dishes->links() !!}
+    {{-- {!! $dishes->links() !!} --}}
       
 @endsection
