@@ -22,6 +22,12 @@ class DishController extends Controller
         // ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    public function showMenu()
+    {
+        $dishes = Dish::all();
+        return view('dishes.menu', compact('dishes'));
+        // ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -49,7 +55,7 @@ class DishController extends Controller
 
         // Dish::create($request->all()); //create is look like the save function
         $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('images'), $imageName);
+        $request->image->move(public_path('assets/img/menu/'), $imageName);
 
         $dish->image = $imageName;
         $dish->name = $request->name;
@@ -100,7 +106,7 @@ class DishController extends Controller
         ]);
         // $dish->update($request->all());
         $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('images'), $imageName);
+        $request->image->move(public_path('assets/img/menu/'), $imageName);
         Dish::where('id', $dish->id)->update([
             'name' => $request->name,
             'description' => $request->description,

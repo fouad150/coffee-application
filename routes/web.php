@@ -34,4 +34,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('dishes', DishController::class);
 });
 
+route::get('/menu', [DishController::class, 'showMenu']);
 require __DIR__ . '/auth.php';

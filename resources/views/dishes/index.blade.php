@@ -6,7 +6,7 @@
             <div class="pull-left">
                 
             </div>
-            <div class="pull-right">
+            <div class="pull-right" style="margin-bottom:15px; margin-top:15px;">
                 <a class="btn btn-success" href="{{ route('dishes.create') }}"> Create New Dish</a>
             </div>
         </div>
@@ -32,7 +32,7 @@
         @foreach ($dishes as $dish)
         <tr>     
             <td>{{ ++$i }}</td>
-            <td style="background-image:url({{ asset('images/' . $dish->image) }});
+            <td style="background-image:url({{ asset('assets/img/menu/' . $dish->image) }});
             height: 63px;
             background-position: center;
             background-size:cover;
