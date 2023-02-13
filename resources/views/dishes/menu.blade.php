@@ -56,7 +56,7 @@
         </ul>
       </nav><!-- .navbar -->
 
-      <a class="btn-book-a-table" href="#book-a-table">Book a Table</a>
+      <a class="btn-book-a-table" href="{{route('dishes.index')}}">back</a>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
@@ -86,6 +86,11 @@
     <!-- ======= Menu Section ======= -->
     <section id="menu" class="menu">
       <div class="container" data-aos="fade-up">
+
+        @guest
+            <p>Please log in to see this content.</p>
+        @endguest
+
 
         <div class="section-header">
           <h2>Our Menu</h2>

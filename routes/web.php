@@ -22,9 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DishController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,5 +32,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('dishes', DishController::class);
 });
 
-route::get('/menu', [DishController::class, 'showMenu']);
+route::get('/menu', [DishController::class, 'showMenu'])->name('menu');
 require __DIR__ . '/auth.php';

@@ -1,3 +1,9 @@
+@auth
+@if( Auth::user()->role==0)
+{!!redirect()->route('menu');!!} 
+@endif
+@endauth
+
 <!DOCTYPE html>
 <html>
 <head>

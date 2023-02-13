@@ -1,6 +1,14 @@
+
+
 @extends('dishes.layout')
  
 @section('content')
+    <div style="margin-top: 15px;">
+        <a href={{asset('/profile')}}>profile</a>
+    </div>
+    <div>
+        <a href={{asset('/menu')}}>menu</a>
+    </div>
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -33,7 +41,7 @@
         <tr>     
             <td>{{ ++$i }}</td>
             <td style="background-image:url({{ asset('assets/img/menu/' . $dish->image) }});
-            height: 63px;
+            height: 120px;
             background-position: center;
             background-size:cover;
             background-repeat:no-repeat;
